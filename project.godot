@@ -15,6 +15,10 @@ run/main_scene="uid://b1m6s47iqqrft"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerInput="*res://scripts/player_input.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
