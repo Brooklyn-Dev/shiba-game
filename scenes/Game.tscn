@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1m6s47iqqrft"]
+[gd_scene load_steps=11 format=3 uid="uid://b1m6s47iqqrft"]
 
 [ext_resource type="Script" uid="uid://coryyd3j4s8uw" path="res://scenes/referee/referee.gd" id="1_ibkli"]
+[ext_resource type="AudioStream" uid="uid://ctgn03oqtlw7a" path="res://assets/sfx/click1.ogg" id="2_qy1jj"]
 [ext_resource type="Script" uid="uid://b3e7lu7cl6bs2" path="res://scenes/referee/composer.gd" id="3_78awf"]
 [ext_resource type="AudioStream" uid="uid://b71plpklqvr3w" path="res://assets/music/Bad Apple!!.mp3" id="3_cpr0p"]
 [ext_resource type="Script" uid="uid://dlfq4yx4hk4vg" path="res://scenes/referee/judge.gd" id="4_78awf"]
@@ -14,9 +15,11 @@
 
 [node name="Referee" type="Node" parent="."]
 script = ExtResource("1_ibkli")
+note_sfx = ExtResource("2_qy1jj")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="Referee"]
 stream = ExtResource("3_cpr0p")
+volume_db = -5.0
 
 [node name="Composer" type="Node" parent="Referee"]
 script = ExtResource("3_78awf")

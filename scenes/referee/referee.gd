@@ -10,6 +10,8 @@ signal judgement_made(judgement: String)
 @onready var display: CanvasLayer = $Display
 @onready var note_spawner: Node = $NoteSpawner
 
+@export var note_sfx: AudioStream
+
 var is_playing := false
 var total_score := 0
 var combo := 0
@@ -26,6 +28,7 @@ func _ready() -> void:
 		Note.new(4, 3, "tap"),
 		Note.new(4, 1, "tap"),
 		Note.new(3, 2, "tap"),
+		Note.new(5, 2, "tap"),
 	]
 	composer.load_chart(test_chart)
 	
@@ -58,8 +61,7 @@ func _on_note_judged(judgement: String, score: int, _note: Note) -> void:
 		combo = 0
 	else:
 		combo += 1
-	
-	print(judgement, str(music_player.get_playback_position()))
+		SfxManager.play(note_sfx, 10.0)
 	
 	score_updated.emit(total_score)
 	combo_updated.emit(combo)

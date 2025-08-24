@@ -2,7 +2,7 @@ extends Node
 
 const BASE_SCROLL_SPEED := 100
 
-@export_range(1, 0, 1) var scroll_speed := 5 
+@export_range(1, 0, 1) var scroll_speed := 5
 @export var note_scene: PackedScene
 
 @export var lane_spawns: Array[Node2D] = []
