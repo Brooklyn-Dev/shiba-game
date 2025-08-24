@@ -13,11 +13,16 @@ config_version=5
 config/name="shiba-game"
 run/main_scene="uid://b1m6s47iqqrft"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [autoload]
 
 PlayerInput="*res://scripts/player_input.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
 
 [editor_plugins]
 

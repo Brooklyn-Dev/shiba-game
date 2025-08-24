@@ -1,4 +1,4 @@
-class_name Note extends Resource
+class_name Note extends RefCounted
 
 @export_range(0.0, 999, 0) var time := 0.0
 @export_range(0, 3) var lane := 0

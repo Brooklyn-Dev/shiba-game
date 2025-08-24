@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://dknteoihr6fd"]
+
+[ext_resource type="Script" uid="uid://b1tayp5b0arc3" path="res://scenes/note/note.gd" id="1_cge7e"]
+[ext_resource type="Texture2D" uid="uid://copke3ijnlgfg" path="res://assets/square.png" id="2_505v3"]
+
+[node name="Note" type="Node2D"]
+modulate = Color(1, 0.917647, 0.94902, 1)
+texture_filter = 1
+script = ExtResource("1_cge7e")
+
+[node name="TapVisuals" type="Node2D" parent="."]
+
+[node name="InnerTap" type="Node2D" parent="TapVisuals"]
+
+[node name="Background" type="Sprite2D" parent="TapVisuals/InnerTap"]
+modulate = Color(0.772549, 0.933333, 1, 1)
+texture_filter = 1
+position = Vector2(-0.5, 0)
+scale = Vector2(3.125, 1.094)
+texture = ExtResource("2_505v3")
+
+[node name="Foreground" type="Sprite2D" parent="TapVisuals/InnerTap"]
+modulate = Color(0.580392, 0.87451, 1, 1)
+texture_filter = 1
+position = Vector2(0, 1.87755e-05)
+scale = Vector2(2.813, 0.781)
+texture = ExtResource("2_505v3")
+
+[node name="OuterTap" type="Node2D" parent="TapVisuals"]
+visible = false
+
+[node name="Background" type="Sprite2D" parent="TapVisuals/OuterTap"]
+modulate = Color(1, 0.917647, 0.94902, 1)
+texture_filter = 1
+position = Vector2(-0.5, 0)
+scale = Vector2(3.125, 1.094)
+texture = ExtResource("2_505v3")
+
+[node name="Foreground" type="Sprite2D" parent="TapVisuals/OuterTap"]
+modulate = Color(0.992157, 0.823529, 0.929412, 1)
+texture_filter = 1
+position = Vector2(0, 1.87755e-05)
+scale = Vector2(2.813, 0.781)
+texture = ExtResource("2_505v3")
+
+[node name="HoldVisuals" type="Node2D" parent="."]
+visible = false
+
+[node name="ChoiceVisuals" type="Node2D" parent="."]
+visible = false

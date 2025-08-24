@@ -14,7 +14,7 @@ func load_chart(data: Array[Note]):
 	
 	# Sort reverse order for efficiency
 	for lane in lane_notes:
-		lane.sort_custom(func(a, b): a.time() > b.time())
+		lane.sort_custom(func(a, b): a.time > b.time)
 
 func get_next_note(lane: int) -> Note:
 	if lane < 0 or lane >= lane_notes.size() or lane_notes[lane].is_empty():
@@ -24,5 +24,5 @@ func get_next_note(lane: int) -> Note:
 
 func consume_note(note: Note):
 	if note.lane >= 0 and note.lane < lane_notes.size():
-		lane_notes[note.lane].erase(note)
+		lane_notes[note.lane].pop_back()
 	all_notes.erase(note)

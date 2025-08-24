@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1m6s47iqqrft"]
+[gd_scene load_steps=10 format=3 uid="uid://b1m6s47iqqrft"]
 
 [ext_resource type="Script" uid="uid://coryyd3j4s8uw" path="res://scenes/referee/referee.gd" id="1_ibkli"]
 [ext_resource type="Script" uid="uid://b3e7lu7cl6bs2" path="res://scenes/referee/composer.gd" id="3_78awf"]
 [ext_resource type="AudioStream" uid="uid://b71plpklqvr3w" path="res://assets/music/Bad Apple!!.mp3" id="3_cpr0p"]
 [ext_resource type="Script" uid="uid://dlfq4yx4hk4vg" path="res://scenes/referee/judge.gd" id="4_78awf"]
+[ext_resource type="Script" uid="uid://sdbd5sm5103n" path="res://scenes/referee/display.gd" id="5_aug50"]
+[ext_resource type="FontFile" uid="uid://dddlieetcxa4o" path="res://assets/fonts/retro-pixel-arcade.ttf" id="5_s0nni"]
+[ext_resource type="Script" uid="uid://chil5uibme1xu" path="res://scenes/referee/note_spawner.gd" id="7_g4kob"]
+[ext_resource type="Texture2D" uid="uid://copke3ijnlgfg" path="res://assets/square.png" id="7_kiw3p"]
+[ext_resource type="PackedScene" uid="uid://dknteoihr6fd" path="res://scenes/note/note.tscn" id="9_qy1jj"]
 
 [node name="Game" type="Node2D"]
 
@@ -18,3 +23,287 @@ script = ExtResource("3_78awf")
 
 [node name="Judge" type="Node" parent="Referee"]
 script = ExtResource("4_78awf")
+
+[node name="Display" type="CanvasLayer" parent="Referee"]
+script = ExtResource("5_aug50")
+
+[node name="ScoreRect" type="ColorRect" parent="Referee/Display"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 16.0
+offset_bottom = 80.0
+grow_horizontal = 0
+color = Color(1, 0, 0.25098, 1)
+
+[node name="ScoreLabel" type="Label" parent="Referee/Display/ScoreRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -33.5
+offset_right = 126.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_s0nni")
+theme_override_font_sizes/font_size = 42
+text = "100000"
+horizontal_alignment = 1
+
+[node name="TopRect" type="Control" parent="Referee/Display"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.0
+offset_top = 72.0
+offset_right = 126.0
+offset_bottom = 180.0
+grow_horizontal = 2
+
+[node name="ComboLabel" type="Label" parent="Referee/Display/TopRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -18.0
+offset_right = 18.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_s0nni")
+theme_override_font_sizes/font_size = 36
+text = "69"
+horizontal_alignment = 1
+
+[node name="JudgementLabel" type="Label" parent="Referee/Display/TopRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -55.0
+offset_right = 126.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_s0nni")
+theme_override_font_sizes/font_size = 36
+text = "PERFECT"
+horizontal_alignment = 1
+
+[node name="ControlsRect" type="Control" parent="Referee/Display"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -100.0
+offset_right = 208.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Lane0Label" type="Label" parent="Referee/Display/ControlsRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -27.5
+offset_right = -139.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(18, 27)
+theme_override_fonts/font = ExtResource("5_s0nni")
+theme_override_font_sizes/font_size = 36
+text = "S"
+horizontal_alignment = 1
+
+[node name="Lane1Label" type="Label" parent="Referee/Display/ControlsRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -27.5
+offset_right = -34.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(18, 27)
+theme_override_fonts/font = ExtResource("5_s0nni")
+theme_override_font_sizes/font_size = 36
+text = "D"
+horizontal_alignment = 1
+
+[node name="Lane2Label" type="Label" parent="Referee/Display/ControlsRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -27.5
+offset_right = 70.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(18, 27)
+theme_override_fonts/font = ExtResource("5_s0nni")
+theme_override_font_sizes/font_size = 36
+text = "J"
+horizontal_alignment = 1
+
+[node name="Lane3Label" type="Label" parent="Referee/Display/ControlsRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 139.0
+offset_top = -27.5
+offset_right = 175.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(18, 27)
+theme_override_fonts/font = ExtResource("5_s0nni")
+theme_override_font_sizes/font_size = 36
+text = "K"
+horizontal_alignment = 1
+
+[node name="NoteSpawner" type="Node" parent="Referee" node_paths=PackedStringArray("lane_spawns", "judgement_line")]
+script = ExtResource("7_g4kob")
+note_scene = ExtResource("9_qy1jj")
+lane_spawns = [NodePath("../../Scene/Chart/Notes/Lane0"), NodePath("../../Scene/Chart/Notes/Lane1"), NodePath("../../Scene/Chart/Notes/Lane2"), NodePath("../../Scene/Chart/Notes/Lane3")]
+judgement_line = NodePath("../../Scene/Chart/JudgementLine")
+
+[node name="Scene" type="Node2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="Camera2D" type="Camera2D" parent="Scene"]
+
+[node name="Background" type="Sprite2D" parent="Scene"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+scale = Vector2(40, 22.5)
+texture = ExtResource("7_kiw3p")
+
+[node name="Chart" type="Node2D" parent="Scene"]
+texture_filter = 1
+
+[node name="Backgrounds" type="Node2D" parent="Scene/Chart"]
+
+[node name="ChartBackground" type="Sprite2D" parent="Scene/Chart/Backgrounds"]
+texture_filter = 1
+scale = Vector2(13.281, 22.5)
+texture = ExtResource("7_kiw3p")
+
+[node name="OuterBackground" type="Sprite2D" parent="Scene/Chart/Backgrounds"]
+modulate = Color(0.223529, 0.027451, 0.145098, 1)
+texture_filter = 1
+position = Vector2(0.0625, -46.004)
+scale = Vector2(12.969, 19.6252)
+texture = ExtResource("7_kiw3p")
+
+[node name="InnerBackground" type="Sprite2D" parent="Scene/Chart/Backgrounds"]
+modulate = Color(0.0156863, 0.0941176, 0.231373, 1)
+texture_filter = 1
+position = Vector2(0, -45.996)
+scale = Vector2(6.406, 19.6248)
+texture = ExtResource("7_kiw3p")
+
+[node name="InactiveBackground" type="Sprite2D" parent="Scene/Chart/Backgrounds"]
+modulate = Color(0.188235, 0.188235, 0.188235, 1)
+texture_filter = 1
+position = Vector2(0, 310)
+scale = Vector2(12.969, 3.125)
+texture = ExtResource("7_kiw3p")
+
+[node name="Gaps" type="Node2D" parent="Scene/Chart"]
+
+[node name="Gap0" type="Sprite2D" parent="Scene/Chart/Gaps"]
+modulate = Color(0.329412, 0.168627, 0.501961, 1)
+texture_filter = 1
+position = Vector2(-105, -52.504)
+scale = Vector2(0.156, 19.219)
+texture = ExtResource("7_kiw3p")
+
+[node name="Gap1" type="Sprite2D" parent="Scene/Chart/Gaps"]
+modulate = Color(0.0235294, 0.25098, 0.458824, 1)
+texture_filter = 1
+position = Vector2(0, -52.504)
+scale = Vector2(0.156, 19.219)
+texture = ExtResource("7_kiw3p")
+
+[node name="Gap2" type="Sprite2D" parent="Scene/Chart/Gaps"]
+modulate = Color(0.329412, 0.168627, 0.501961, 1)
+texture_filter = 1
+position = Vector2(105, -52.504)
+scale = Vector2(0.156, 19.219)
+texture = ExtResource("7_kiw3p")
+
+[node name="InactiveGap0" type="Sprite2D" parent="Scene/Chart/Gaps"]
+modulate = Color(0.313726, 0.313726, 0.313726, 1)
+texture_filter = 1
+position = Vector2(-105, 309.997)
+scale = Vector2(0.156, 3.12481)
+texture = ExtResource("7_kiw3p")
+
+[node name="InactiveGap1" type="Sprite2D" parent="Scene/Chart/Gaps"]
+modulate = Color(0.313726, 0.313726, 0.313726, 1)
+texture_filter = 1
+position = Vector2(0, 309.997)
+scale = Vector2(0.156, 3.12481)
+texture = ExtResource("7_kiw3p")
+
+[node name="InactiveGap2" type="Sprite2D" parent="Scene/Chart/Gaps"]
+modulate = Color(0.313726, 0.313726, 0.313726, 1)
+texture_filter = 1
+position = Vector2(105, 309.997)
+scale = Vector2(0.156, 3.12481)
+texture = ExtResource("7_kiw3p")
+
+[node name="JudgementLine" type="Sprite2D" parent="Scene/Chart"]
+texture_filter = 1
+position = Vector2(0, 257.5)
+scale = Vector2(12.969, 0.156)
+texture = ExtResource("7_kiw3p")
+
+[node name="Notes" type="Node2D" parent="Scene/Chart"]
+
+[node name="Lane0" type="Node2D" parent="Scene/Chart/Notes"]
+position = Vector2(-157, -377)
+
+[node name="Lane1" type="Node2D" parent="Scene/Chart/Notes"]
+position = Vector2(-52, -377.5)
+
+[node name="Lane2" type="Node2D" parent="Scene/Chart/Notes"]
+position = Vector2(52, -377.5)
+
+[node name="Lane3" type="Node2D" parent="Scene/Chart/Notes"]
+position = Vector2(157, -377.5)
