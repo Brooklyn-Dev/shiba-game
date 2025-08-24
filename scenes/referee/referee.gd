@@ -28,7 +28,12 @@ func _ready() -> void:
 		Note.new(4, 3, "tap"),
 		Note.new(4, 1, "tap"),
 		Note.new(3, 2, "tap"),
-		Note.new(5, 2, "tap"),
+		Note.new(5, 3, "tap"),
+		Note.new(6, 2, "tap"),
+		Note.new(7, 3, "tap"),
+		Note.new(8, 2, "tap"),
+		Note.new(9, 3, "tap"),
+		Note.new(10, 2, "tap"),
 	]
 	composer.load_chart(test_chart)
 	

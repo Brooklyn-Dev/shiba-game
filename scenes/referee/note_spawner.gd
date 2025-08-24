@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 		if note in spawned_notes:
 			continue
 		
-		var spawn_time = calculate_spawn_time(note.time)
+		var spawn_time = _calculate_spawn_time(note.time)
 		if current_time >= spawn_time:
 			spawn_note(note)
 			spawned_notes.append(note)
@@ -38,7 +38,7 @@ func spawn_note(note: Note) -> void:
 	note_instance.position = Vector2.ZERO
 	note_instance.setup(music_player, judgement_line.position.y, BASE_SCROLL_SPEED * scroll_speed, note)
 
-func calculate_spawn_time(note_hit_time: float) -> float:
+func _calculate_spawn_time(note_hit_time: float) -> float:
 	var distance = (judgement_line.global_position.y - lane_spawns[0].global_position.y)
 	var fall_time = distance / (BASE_SCROLL_SPEED * scroll_speed)
 	return (note_hit_time - fall_time)

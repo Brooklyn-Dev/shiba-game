@@ -33,22 +33,17 @@ func _process(_delta: float) -> void:
 func process_input(lane: int):
 	var current_time = music_player.get_playback_position()
 	var note = composer.get_next_note(lane)
-	
 	if note == null:
-		#note_judged.emit("MISS", 0, null)
 		return
 	
 	var time_diff = abs(current_time - note.time)
-	
 	if time_diff > TIMING_WINDOWS.OK:
-		note_judged.emit("MISS", 0, null)
 		return
 	
 	var judgement = get_timing_judgement(time_diff)
 	var score = get_judgement_score(judgement)
 	
 	composer.consume_note(note)
-	
 	note_judged.emit(judgement, score, note)
 
 func get_timing_judgement(time_diff: float) -> String:
