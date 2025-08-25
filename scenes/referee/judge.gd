@@ -10,7 +10,8 @@ const TIMING_WINDOWS: Dictionary[String, float] = {
 	"PERFECT": 0.035,  # ±35ms
 	"GREAT": 0.070,  # ±70ms
 	"GOOD": 0.110, # ±110ms
-	"OK": 0.150 # ±150ms
+	"OK": 0.150, # ±150ms
+	"MISS": 0.200 # +200ms
 }
 
 func setup(composer_ref: Node, music_player_ref: AudioStreamPlayer):
@@ -37,7 +38,11 @@ func process_input(lane: int):
 		return
 	
 	var time_diff = abs(current_time - note.time)
+	if time_diff > TIMING_WINDOWS.MISS:
+		return
 	if time_diff > TIMING_WINDOWS.OK:
+		composer.consume_note(note)
+		note_judged.emit("MISS", 0, null)
 		return
 	
 	var judgement = get_timing_judgement(time_diff)
