@@ -7,18 +7,17 @@ extends Node2D
 var music_player: AudioStreamPlayer
 
 var judgement_line_y: float
-
 var spawn_time: float
 var initial_y: float
-
 var fall_speed: float
-var target_time: float
+
+var smooth_position: float
+var lerp_speed := 20.0
 
 func setup(music_player_ref: AudioStreamPlayer, line_y: float, speed: float, note: Note) -> void:
 	music_player = music_player_ref
 	judgement_line_y = line_y
 	fall_speed = speed
-	target_time = note.time
 	
 	spawn_time = music_player.get_playback_position()
 	initial_y = position.y
@@ -52,11 +51,12 @@ func _set_choice_visuals(note: Note):
 	#choice_visuals.show()
 	assert(0 == 1, "_set_choice_visuals is not implemented")
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	var current_time = music_player.get_playback_position()
-	
 	var elapsed = current_time - spawn_time
-	position.y = initial_y + elapsed * fall_speed
+	smooth_position = initial_y + elapsed * fall_speed
+	
+	position.y = lerp(position.y, smooth_position, lerp_speed * delta)
 	
 	if position.y > 800:
 		queue_free()
