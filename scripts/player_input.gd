@@ -8,3 +8,11 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		button_pressed.emit(event.as_text_keycode())
+		
+		if event.as_text_keycode() == "Escape":
+			get_tree().quit()
+			return
+			
+		if event.as_text_keycode() == "R":
+			get_tree().reload_current_scene()
+			return
