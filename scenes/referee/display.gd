@@ -10,6 +10,8 @@ extends CanvasLayer
 @onready var ok_label := $JudgementsRect/OkRect/QuantityLabel
 @onready var missed_label := $JudgementsRect/MissedRect/QuantityLabel
 
+@onready var fps_label := $FPSLabel
+
 func _ready():
 	var referee = get_parent()
 	referee.connect("score_updated", _on_score_updated)
@@ -25,6 +27,11 @@ func _ready():
 	good_label.text = "0"
 	ok_label.text = "0"
 	missed_label.text = "0"
+	
+	fps_label.text = "FPS: N/A"
+
+func _process(_delta: float) -> void:
+	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
 
 func _on_score_updated(score: int):
 	score_label.text = str(score)
